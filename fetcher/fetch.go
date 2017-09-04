@@ -10,9 +10,10 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	iconv "github.com/djimenez/iconv-go"
+	"github.com/axgle/mahonia"
 	"github.com/howie6879/NIYT/common"
 	readability "github.com/mauidude/go-readability"
+	"github.com/saintfish/chardet"
 )
 
 // Novel contains information about the novel taht you searched
@@ -84,6 +85,7 @@ func (chapter *ChapterItem) FetchContent() {
 	}
 	var chapterContent []string
 	var chapterString string
+	var html string
 	response, err := common.RequestURL(chapter.Href)
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
@@ -93,9 +95,12 @@ func (chapter *ChapterItem) FetchContent() {
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
-	html, err := iconv.ConvertString(string(body), "gbk", "utf-8")
-	if err != nil {
+	detector := chardet.NewTextDetector()
+	result, _ := detector.DetectBest(body)
+	if strings.Contains(strings.ToLower(result.Charset), "utf") {
 		html = string(body)
+	} else {
+		html = mahonia.NewDecoder("gbk").ConvertString(string(body))
 	}
 	readabilityDoc, err := readability.NewDocument(html)
 	if err != nil {
@@ -118,6 +123,7 @@ func (novel *Novel) FetchChapters() {
 		return
 	}
 	var chapterData []ChapterItem
+	var content string
 	response, err := common.RequestURL(novel.URL)
 	var chapters []string
 	if err != nil {
@@ -128,9 +134,12 @@ func (novel *Novel) FetchChapters() {
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
-	content, err := iconv.ConvertString(string(body), "gbk", "utf-8")
-	if err != nil {
+	detector := chardet.NewTextDetector()
+	result, _ := detector.DetectBest(body)
+	if strings.Contains(strings.ToLower(result.Charset), "utf") {
 		content = string(body)
+	} else {
+		content = mahonia.NewDecoder("gbk").ConvertString(string(body))
 	}
 	valid := regexp.MustCompile(`<a\s+.*?>.*第?\s*[一二两三四五六七八九十○零百千万亿0-9１２３４５６７８９０]{1,6}\s*[章回卷节折篇幕集].*?</a>`)
 	chapters = valid.FindAllString(content, -1)
