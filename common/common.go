@@ -25,7 +25,7 @@ type Config struct {
 		LatestChapterName string `json:"LatestChapterName"`
 		LatestChapterURL  string `json:"LatestChapterURL"`
 	}
-	Sites []string `josn:"Sites"`
+	Sites []string `json:"Sites"`
 }
 
 // LoadConfiguration Get the configuration from the rules.json
