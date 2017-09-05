@@ -9,10 +9,34 @@
 ### 1.How to use?
 
 ``` shell
-
+# 方式一
 git clone https://github.com/howie6879/NIYT.git
 cd NIYT
 go run main.go
+
+# 方式二
+# 若您无go环境，请直接下载编译好的版本，下面是编译语句
+CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./release/NIYT.mac
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./release/NIYT.exe
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build  -o ./release/NIYT.linux
+
+```
+
+**编译好的可执行文件**，请在[release](https://github.com/howie6879/NIYT/releases)下载对应的版本
+
+**注意：** 下载好可执行文件之后，在同一目录下必须将项目中的`data`目录以及里面的内容同时下载才可以运行`NIYT.***`可执行文件，以`linux`为例：
+
+``` shell
+
+# 此时文件目录如下，已经下载了data目录的文件
+.
+├── data
+│   ├── rules.json
+│   └── user_agents.txt
+├── NIYT.linux
+
+# 运行下载的`NIYT.linux` 这样就可以直接执行使用
+./NIYT.linux
 
 ```
 
