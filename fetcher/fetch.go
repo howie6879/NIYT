@@ -10,10 +10,8 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/axgle/mahonia"
 	"github.com/howie6879/NIYT/common"
 	readability "github.com/mauidude/go-readability"
-	"github.com/saintfish/chardet"
 )
 
 // Novel contains information about the novel taht you searched
@@ -83,9 +81,11 @@ func (chapter *ChapterItem) FetchContent() {
 	if len(chapter.Content) > 0 {
 		return
 	}
-	var chapterContent []string
-	var chapterString string
-	var html string
+	var (
+		chapterContent []string
+		chapterString  string
+		html           string
+	)
 	response, err := common.RequestURL(chapter.Href)
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
@@ -95,13 +95,7 @@ func (chapter *ChapterItem) FetchContent() {
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
-	detector := chardet.NewTextDetector()
-	result, _ := detector.DetectBest(body)
-	if strings.Contains(strings.ToLower(result.Charset), "utf") {
-		html = string(body)
-	} else {
-		html = mahonia.NewDecoder("gbk").ConvertString(string(body))
-	}
+	html = common.DetectBody(body)
 	readabilityDoc, err := readability.NewDocument(html)
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
@@ -122,10 +116,12 @@ func (novel *Novel) FetchChapters() {
 	if len(novel.Chapters) > 0 {
 		return
 	}
-	var chapterData []ChapterItem
-	var content string
+	var (
+		content     string
+		chapterData []ChapterItem
+		chapters    []string
+	)
 	response, err := common.RequestURL(novel.URL)
-	var chapters []string
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
@@ -134,13 +130,7 @@ func (novel *Novel) FetchChapters() {
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
-	detector := chardet.NewTextDetector()
-	result, _ := detector.DetectBest(body)
-	if strings.Contains(strings.ToLower(result.Charset), "utf") {
-		content = string(body)
-	} else {
-		content = mahonia.NewDecoder("gbk").ConvertString(string(body))
-	}
+	content = common.DetectBody(body)
 	valid := regexp.MustCompile(`<a\s+.*?>.*第?\s*[一二两三四五六七八九十○零百千万亿0-9１２３４５６７８９０]{1,6}\s*[章回卷节折篇幕集].*?</a>`)
 	chapters = valid.FindAllString(content, -1)
 	chapterString := strings.Join(chapters, ",")

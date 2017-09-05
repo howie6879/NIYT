@@ -43,7 +43,7 @@ func main() {
 	fmt.Println("**** 请先输入小说名")
 	fmt.Println("**** show : 显示此时资源 如书源以及最新章节")
 	fmt.Println("**** get  : 如 get 0 ，获取此资源并显示")
-	fmt.Println("**** q    : 返回 ctrl+c 退出")
+	fmt.Println("**** q    : 返回")
 	fmt.Println("****")
 	defer func() {
 		color.Yellow("下次再见^_^\n")
@@ -53,6 +53,9 @@ func main() {
 		name := getInputString()
 		if len(name) == 0 {
 			continue
+		}
+		if name == "q" {
+			break
 		}
 		query := name + " 小说 最新章节"
 		resultData, _ := fetcher.FetchResult(query)

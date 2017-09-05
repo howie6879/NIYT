@@ -3,6 +3,10 @@ package common
 import (
 	"net/http"
 	"net/url"
+	"strings"
+
+	"github.com/axgle/mahonia"
+	"github.com/saintfish/chardet"
 )
 
 // RequestURL return the search result
@@ -12,6 +16,22 @@ func RequestURL(url string) (*http.Response, error) {
 	req.Header.Set("User-Agent", GetUserAgent())
 	response, err := client.Do(req)
 	return response, err
+}
+
+// DetectBody gbk convert to utf-8
+func DetectBody(body []byte) string {
+	var bodyString string
+	detector := chardet.NewTextDetector()
+	result, err := detector.DetectBest(body)
+	if err != nil {
+		return string(body)
+	}
+	if strings.Contains(strings.ToLower(result.Charset), "utf") {
+		bodyString = string(body)
+	} else {
+		bodyString = mahonia.NewDecoder("gbk").ConvertString(string(body))
+	}
+	return bodyString
 }
 
 // StringInSlice search for an element in a golang slice
