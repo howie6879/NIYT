@@ -37,11 +37,7 @@ type LatestChapterItem struct {
 // FetchResult get the result that you need
 func FetchResult(query string) ([]Novel, error) {
 	var resultData []Novel
-	config, err := common.LoadConfiguration()
-	if err != nil {
-		fmt.Printf("Error: %s\n", err)
-		return resultData, err
-	}
+	config := common.LoadConfiguration()
 	requestURL := config.SoURL + "?q=" + url.QueryEscape(query) + "&ie=utf-8"
 	response, err := common.RequestURL(requestURL)
 	if err != nil {
