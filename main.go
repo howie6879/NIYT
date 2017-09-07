@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
+	"github.com/howie6879/NIYT/common"
 	"github.com/howie6879/NIYT/fetcher"
 	"github.com/modood/table"
 )
@@ -16,6 +17,7 @@ type novleDemo struct {
 	Index int
 	Name  string
 	URL   string
+	Speed string
 }
 
 type chapterDemo struct {
@@ -61,10 +63,18 @@ func main() {
 		resultData, _ := fetcher.FetchResult(query)
 		if len(resultData) > 0 {
 			var novelData []novleDemo
+			quickest := make(chan int, len(resultData))
 			for index, data := range resultData {
 				novelData = append(novelData, novleDemo{Index: index, Name: data.Title, URL: data.URL})
+				go func() {
+					quickest <- common.QuickestURL(index, data.URL)
+				}()
 			}
-			table.Output(novelData)
+			currentIndex := <-quickest
+			if currentIndex != -1 {
+				novelData[currentIndex].Speed = "响应最快"
+				table.Output(novelData)
+			}
 			for {
 				flag := false
 				fmt.Fprintf(color.Output, "$ %s", color.CyanString(name+" 源 ~ "))

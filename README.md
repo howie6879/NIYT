@@ -31,13 +31,18 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build  -o ./release/NIYT.linux
 # 运行下载的`NIYT.linux` 这样就可以直接执行使用
 ./NIYT.linux
 
+# 若提示无法运行，例如在mac下
+chmod a+x NIYT.mac
+# 再运行即可
+./NIYT.mac
+
 ```
 
-首先输入小说名称，调用第三方搜索，利用本地`json`文件解析，终端就会显示小说源：
+首先输入小说名称，调用第三方搜索，终端就会显示小说源：
 
 ![demo01](./images/demo01.jpg)
 
-利用`get 0`进入第一个源，获取最新章节：
+利用`get 2`进入提示相应最快的源，获取最新章节：
 ![demo02](./images/demo02.jpg)
 
 选择章节进行阅读，如阅读最新章节，`get 0`:

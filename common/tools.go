@@ -18,6 +18,18 @@ func RequestURL(url string) (*http.Response, error) {
 	return response, err
 }
 
+// QuickestURL return the quickest response
+func QuickestURL(index int, url string) int {
+	// start := time.Now()
+	_, err := http.Get(url)
+	if err != nil {
+		return -1
+	}
+	// timeUsed := strconv.FormatFloat(time.Since(start).Seconds(), 'f', 6, 64)
+	// fmt.Println(url, timeUsed)
+	return index
+}
+
 // DetectBody gbk convert to utf-8
 func DetectBody(body []byte) string {
 	var bodyString string
