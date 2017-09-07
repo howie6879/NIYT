@@ -1,10 +1,8 @@
 ## Read the novel in your terminal - NIYT
 
 > 这几天在看`go`，所以这是个练手项目，在终端里看小说
-
-这是个无聊的项目
-
-这真是个无聊的项目
+> 这是个无聊的项目
+> 这真是个无聊的项目
 
 ### 1.How to use?
 
