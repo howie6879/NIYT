@@ -73,8 +73,8 @@ func main() {
 			currentIndex := <-quickest
 			if currentIndex != -1 {
 				novelData[currentIndex].Speed = "响应最快"
-				table.Output(novelData)
 			}
+			table.Output(novelData)
 			for {
 				flag := false
 				fmt.Fprintf(color.Output, "$ %s", color.CyanString(name+" 源 ~ "))
