@@ -40,13 +40,16 @@ chmod a+x NIYT.mac
 
 ![demo01](./images/demo01.jpg)
 
-利用`get 2`进入提示相应最快的源，获取最新章节：
+利用`get 2`进入提示响应速度最快的源，获取最新章节：
+
 ![demo02](./images/demo02.jpg)
 
 选择章节进行阅读，如阅读最新章节，`get 0`:
+
 ![demo03](./images/demo03.jpg)
 
 `show` 会以表格的形式再次展示当前源：
+
 ![demo04](./images/demo04.jpg)
 
 **享受阅读吧**
