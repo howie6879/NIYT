@@ -62,9 +62,9 @@ func main() {
 			quickest := make(chan int, len(resultData))
 			for index, data := range resultData {
 				novelData = append(novelData, novleDemo{Index: index, Name: data.Title, URL: data.URL})
-				go func() {
-					quickest <- common.QuickestURL(index, data.URL)
-				}()
+				go func(index int, url string) {
+					quickest <- common.QuickestURL(index, url)
+				}(index, data.URL)
 			}
 			currentIndex := <-quickest
 			if currentIndex != -1 {
