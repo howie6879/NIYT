@@ -38,15 +38,7 @@ func getInputString() string {
 }
 
 func main() {
-	color.Cyan("******************************************************************************\n")
-	color.Cyan("****                Read the novel in your terminal - NIYT                ****\n")
-	color.Cyan("******************************************************************************\n")
-	fmt.Println()
-	fmt.Println("**** 请先输入小说名")
-	fmt.Println("**** show : 显示此时资源 如书源以及最新章节")
-	fmt.Println("**** get  : 如 get 0 ，获取此资源并显示")
-	fmt.Println("**** q    : 返回")
-	fmt.Println("****")
+	color.Cyan(common.LOGO)
 	defer func() {
 		color.Yellow("下次再见^_^\n")
 	}()
@@ -58,6 +50,10 @@ func main() {
 		}
 		if name == "q" {
 			break
+		}
+		if name == "help" {
+			showHelp()
+			continue
 		}
 		query := name + " 小说 最新章节"
 		resultData, _ := fetcher.FetchResult(query)
@@ -75,6 +71,7 @@ func main() {
 				novelData[currentIndex].Speed = "响应最快"
 			}
 			table.Output(novelData)
+			fmt.Fprintf(color.Output, "if you don't know how to do next, just type '%s' \n", color.RedString("help"))
 			for {
 				flag := false
 				fmt.Fprintf(color.Output, "$ %s", color.CyanString(name+" 源 ~ "))
@@ -84,6 +81,10 @@ func main() {
 				case "show":
 					{
 						table.Output(novelData)
+					}
+				case "help":
+					{
+						showHelp()
 					}
 				case "get":
 					{
@@ -111,6 +112,10 @@ func main() {
 								case "show":
 									{
 										table.Output(chapterData)
+									}
+								case "help":
+									{
+										showHelp()
 									}
 								case "get":
 									{
@@ -149,6 +154,15 @@ func main() {
 			fmt.Println("暂无结果，请重试！")
 		}
 	}
+}
+
+func showHelp() {
+	fmt.Println()
+	fmt.Println("**** 请先输入小说名")
+	fmt.Println("**** show : 显示此时资源 如书源以及最新章节")
+	fmt.Println("**** get  : 如 get 0 ，获取此资源并显示")
+	fmt.Println("**** q    : 返回")
+	fmt.Println("****")
 }
 
 func idJudge(cmdSplit []string) (uint64, bool) {

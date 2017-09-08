@@ -1,5 +1,7 @@
 ## Read the novel in your terminal - NIYT
 
+[![GitHub release](https://img.shields.io/github/release/howie6879/NIYT.svg)](https://github.com/howie6879/NIYT/releases)
+
 > 这几天在看`go`，所以这是个练手项目，在终端里看小说
 
 > 这是个无聊的项目 这真是个无聊的项目
@@ -42,9 +44,9 @@ chmod a+x NIYT.mac
 
 首先输入小说名称，调用第三方搜索，终端就会显示小说源，会自动判断优质源：
 
-![demo01](./images/demo01.jpg)
+![demo01](./images/demo01.png)
 
-利用`get 2`进入提示响应速度最快的源，获取最新章节：
+利用`get 3`进入提示响应速度最快的源，获取最新章节：
 
 ![demo02](./images/demo02.jpg)
 

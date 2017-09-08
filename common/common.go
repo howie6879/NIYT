@@ -97,6 +97,19 @@ var (
 	}
 )
 
+// LOGO show the basic info
+const LOGO = `
+███╗   ██╗██╗██╗   ██╗████████╗
+████╗  ██║██║╚██╗ ██╔╝╚══██╔══╝
+██╔██╗ ██║██║ ╚████╔╝    ██║   
+██║╚██╗██║██║  ╚██╔╝     ██║   
+██║ ╚████║██║   ██║      ██║   
+╚═╝  ╚═══╝╚═╝   ╚═╝      ╚═╝   
+
+Read the novel in your terminal - NIYT v0.1.2
+
+`
+
 // Config contains information we need to process a novel
 type Config struct {
 	DomainFlagM    string
