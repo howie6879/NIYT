@@ -46,7 +46,7 @@ chmod a+x NIYT.mac
 
 ![demo01](./images/demo01.png)
 
-利用`get 3`进入提示响应速度最快的源，获取最新章节：
+利用`get 2`进入提示响应速度最快的源，获取最新章节：
 
 ![demo02](./images/demo02.jpg)
 
