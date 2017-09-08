@@ -42,6 +42,8 @@ chmod a+x NIYT.mac
 
 ```
 
+**如果在`win`下面出现排版混乱，请参考[这里](http://blog.csdn.net/iway_lch/article/details/50408796)来解决**
+
 首先输入小说名称，调用第三方搜索，终端就会显示小说源，会自动判断优质源：
 
 ![demo01](./images/demo01.png)
@@ -58,4 +60,4 @@ chmod a+x NIYT.mac
 
 ![demo04](./images/demo04.jpg)
 
-**享受阅读吧**，觉得不错的话给一个`star`吧
+**享受阅读吧** ，觉得不错的话给一个`star`吧
