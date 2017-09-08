@@ -1,4 +1,4 @@
-```
+``` shell
 
 ███╗   ██╗██╗██╗   ██╗████████╗
 ████╗  ██║██║╚██╗ ██╔╝╚══██╔══╝
@@ -9,13 +9,11 @@
 
 ```
 
-Read the novel in your terminal - NIYT
-
-[![GitHub release](https://img.shields.io/github/release/howie6879/NIYT.svg)](https://github.com/howie6879/NIYT/releases)
+[![GitHub release](https://img.shields.io/github/release/howie6879/NIYT.svg)](https://github.com/howie6879/NIYT/releases) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/howie6879/NIYT/LICENSE)
 
 > 这几天在看`go`，所以这是个练手项目，在终端里看小说
 
-> 这是个无聊的项目 这真是个无聊的项目
+> Read the novel in your terminal - NIYT
 
 ### 1.How to use?
 
