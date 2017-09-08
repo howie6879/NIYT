@@ -1,4 +1,12 @@
-## Read the novel in your terminal - NIYT
+
+███╗   ██╗██╗██╗   ██╗████████╗
+████╗  ██║██║╚██╗ ██╔╝╚══██╔══╝
+██╔██╗ ██║██║ ╚████╔╝    ██║   
+██║╚██╗██║██║  ╚██╔╝     ██║   
+██║ ╚████║██║   ██║      ██║   
+╚═╝  ╚═══╝╚═╝   ╚═╝      ╚═╝   
+
+Read the novel in your terminal - NIYT
 
 [![GitHub release](https://img.shields.io/github/release/howie6879/NIYT.svg)](https://github.com/howie6879/NIYT/releases)
 
