@@ -8,9 +8,13 @@
 
 ``` shell
 # 方式一
+cd $GOPATH/src
 git clone https://github.com/howie6879/NIYT.git
 cd NIYT
 go run main.go
+
+# 若想直接在终端使用
+go install
 
 # 方式二
 # 若您无go环境，请直接下载编译好的版本，下面是编译语句
@@ -20,13 +24,13 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build  -o ./release/NIYT.linux
 
 ```
 
-**编译好的可执行文件**，请在[release](https://github.com/howie6879/NIYT/releases)下载对应的版本
+**编译好的可执行文件**，请在[release](https://github.com/howie6879/NIYT/releases)下载对应的版本，支持`mac win linux`
 
-直接运行即可：
+然后直接运行即可：
 
 ``` shell
 
-# 运行下载的`NIYT.linux` 这样就可以直接执行使用
+# 以linux为例，运行下载的NIYT.linux
 ./NIYT.linux
 
 # 若提示无法运行，例如在mac下
@@ -36,7 +40,7 @@ chmod a+x NIYT.mac
 
 ```
 
-首先输入小说名称，调用第三方搜索，终端就会显示小说源：
+首先输入小说名称，调用第三方搜索，终端就会显示小说源，会自动判断优质源：
 
 ![demo01](./images/demo01.jpg)
 
@@ -52,4 +56,4 @@ chmod a+x NIYT.mac
 
 ![demo04](./images/demo04.jpg)
 
-**享受阅读吧**
+**享受阅读吧**，觉得不错的话给一个`star`吧
