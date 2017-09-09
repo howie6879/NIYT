@@ -17,7 +17,6 @@ type novleDemo struct {
 	Index int
 	Name  string
 	URL   string
-	Speed string
 }
 
 type chapterDemo struct {
@@ -68,7 +67,7 @@ func main() {
 			}
 			currentIndex := <-quickest
 			if currentIndex != -1 {
-				novelData[currentIndex].Speed = "响应最快"
+				novelData[currentIndex].URL = novelData[currentIndex].URL + "（响应最快）"
 			}
 			table.Output(novelData)
 			fmt.Fprintf(color.Output, "if you don't know how to do next, just type '%s' \n", color.RedString("help"))
