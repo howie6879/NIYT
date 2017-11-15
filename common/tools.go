@@ -56,7 +56,7 @@ func StringInSlice(domain string, list []string) bool {
 	return false
 }
 
-//ReturnDomain parse url and return the domain
+// ReturnDomain parse url and return the domain
 func ReturnDomain(currentURL string) string {
 	urlParse, _ := url.Parse(currentURL)
 	domain := urlParse.Host
