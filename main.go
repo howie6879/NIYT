@@ -36,6 +36,28 @@ func getInputString() string {
 	return strings.TrimSpace(s)
 }
 
+func showHelp() {
+	fmt.Println()
+	fmt.Println("**** 请先输入小说名")
+	fmt.Println("**** show : 显示此时资源 如书源以及最新章节")
+	fmt.Println("**** get  : 如 get 0 ，获取此资源并显示")
+	fmt.Println("**** q    : 返回")
+	fmt.Println("****")
+}
+
+func idJudge(cmdSplit []string) (uint64, bool) {
+	if len(cmdSplit) < 2 {
+		color.Red("输入格式不对")
+		return 0, false
+	}
+	id, err := strconv.ParseUint(cmdSplit[1], 10, 32)
+	if err != nil {
+		fmt.Fprintf(color.Output, "输入格式不对 %s\n", color.RedString(err.Error()))
+		return 0, false
+	}
+	return id, true
+}
+
 func main() {
 	color.Cyan(common.LOGO)
 	defer func() {
@@ -153,26 +175,4 @@ func main() {
 			fmt.Println("暂无结果，请重试！")
 		}
 	}
-}
-
-func showHelp() {
-	fmt.Println()
-	fmt.Println("**** 请先输入小说名")
-	fmt.Println("**** show : 显示此时资源 如书源以及最新章节")
-	fmt.Println("**** get  : 如 get 0 ，获取此资源并显示")
-	fmt.Println("**** q    : 返回")
-	fmt.Println("****")
-}
-
-func idJudge(cmdSplit []string) (uint64, bool) {
-	if len(cmdSplit) < 2 {
-		color.Red("输入格式不对")
-		return 0, false
-	}
-	id, err := strconv.ParseUint(cmdSplit[1], 10, 32)
-	if err != nil {
-		fmt.Fprintf(color.Output, "输入格式不对 %s\n", color.RedString(err.Error()))
-		return 0, false
-	}
-	return id, true
 }
